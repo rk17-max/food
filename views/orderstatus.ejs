@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Orders</title>
+    <link rel="stylesheet" href="/styles.css">
+    <style>
+        /* Basic styling for the order status page */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #333;
+            padding: 1rem;
+            color: white;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        .nav-links {
+            list-style: none;
+            display: flex;
+            gap: 1rem;
+        }
+
+        .nav-links li {
+            margin: 0;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            padding: 0.5rem 1rem;
+            border-radius: 0.25rem;
+            transition: background-color 0.3s;
+        }
+
+        .nav-links a:hover {
+            background-color: #555;
+        }
+
+        main {
+            padding: 2rem;
+        }
+
+        h1 {
+            margin-bottom: 1rem;
+            color: #333;
+        }
+
+        .order-list {
+            background: #fff;
+            border-radius: 0.5rem;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            padding: 1rem;
+        }
+
+        .order-item {
+            border-bottom: 1px solid #ddd;
+            padding: 1rem 0;
+        }
+
+        .order-item:last-child {
+            border-bottom: none;
+        }
+
+        .order-item h3 {
+            margin: 0;
+            color: #333;
+        }
+
+        .order-item p {
+            margin: 0.5rem 0;
+            color: #666;
+        }
+
+        .order-quantity {
+            font-weight: bold;
+            color: #333;
+        }
+
+        .order-total {
+            font-size: 1.2rem;
+            color: #e53935;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="logo">Foodie</div>
+            <ul class="nav-links">
+                <li><a href="/food-home">Home</a></li>
+                <li><a href="/menu">Menu</a></li>
+                <li><a href="/orderstatus">My Orders</a></li>
+                <li><a href="/contact">Contact</a></li>
+                <li><a href="/about">About</a></li>
+                <li><a href="/logout">Logout</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <h1>My Orders</h1>
+        <section class="order-list">
+            <% if (orders.length > 0) { %>
+                <% orders.forEach(function(order) { %>
+                    <div class="order-item">
+                        <h3><%= order.food.foodname %></h3>
+                        <p>Status: <%= order.status %></p>
+                        <p>Quantity: <span class="order-quantity"><%= order.qty %></span></p>
+                        <p>Price per item: $<%= order.food.price %></p>
+                        <p>Total Price: <span class="order-total">$<%= (order.food.price * order.qty).toFixed(2) %></span></p>
+                        <p>Description: <%= order.food.description %></p>
+                    </div>
+                <% }); %>
+            <% } else { %>
+                <p>No orders placed yet.</p>
+            <% } %>
+        </section>
+    </main>
+</body>
+</html>

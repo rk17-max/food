@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Notifications</title>
+    <link rel="stylesheet" href="/path/to/your/css/style.css"> <!-- Adjust the path -->
+</head>
+<body>
+    <h1>Notifications</h1>
+    <% if (notifications.length > 0) { %>
+        <ul>
+            <% notifications.forEach(notification => { %>
+                <li>
+                    <p><%= notification.message %></p>
+                    <p><small><%= new Date(notification.createdAt).toLocaleString() %></small></p>
+                </li>
+            <% }) %>
+        </ul>
+    <% } else { %>
+        <p>No notifications.</p>
+    <% } %>
+    <a href="/food-home">Back to Food Home</a>
+</body>
+</html>

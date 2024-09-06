@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Food Home</title>
+    <link rel="stylesheet" href="/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+
+        /* Filter Form Styling */
+.filter-form {
+    margin: 1rem 0;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+.notification-container {
+    position: relative;
+}
+
+.notification-icon {
+    font-size: 24px;
+    color: #fff;
+    position: relative;
+}
+
+.notification-count {
+    background-color: red;
+    color: white;
+    font-size: 12px;
+    border-radius: 50%;
+    padding: 2px 6px;
+    position: absolute;
+    top: -10px;
+    right: -10px;
+}
+
+
+.filter-form label {
+    font-size: 1rem;
+    color: #333;
+}
+
+.filter-select {
+    padding: 0.5rem 1rem;
+    font-size: 1rem;
+    border: 1px solid #ddd;
+    border-radius: 0.25rem;
+    background-color: #ffffff;
+    color: #333;
+    cursor: pointer;
+    transition: background-color 0.3s, border-color 0.3s;
+}
+
+.filter-select:hover {
+    background-color: #f9f9f9;
+    border-color: #ccc;
+}
+
+.filter-select option {
+    padding: 0.5rem;
+}
+
+        /* Enhanced Navbar Styling */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #ffffff; /* White background */
+            padding: 0.75rem 2rem;
+            color: #ff6f61; /* Orange text color */
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); /* Softer shadow */
+            z-index: 1000;
+            position: relative;
+        }
+
+        .logo {
+            font-size: 1.75rem;
+            font-weight: bold;
+            color: #ff6f61; /* Orange logo color */
+        }
+
+        .nav-links {
+            list-style: none;
+            display: flex;
+            gap: 1.5rem;
+            align-items: center; /* Align items vertically center */
+        }
+
+        .nav-links li {
+            margin: 0;
+        }
+
+        .nav-links a {
+            color: #ff6f61; /* Orange text color */
+            text-decoration: none;
+            padding: 0.5rem 1rem;
+            border-radius: 0.25rem;
+            transition: background-color 0.3s, transform 0.3s, color 0.3s;
+            font-weight: 500;
+        }
+
+        .nav-links a:hover {
+            background-color: #ff6f61; /* Orange background color on hover */
+            color: #ffffff; /* White text color on hover */
+            transform: scale(1.05);
+        }
+
+        /* Profile Container Styling */
+        .profile-container {
+            display: flex;
+            align-items: center; /* Center items vertically */
+            gap: 0.5rem; /* Space between profile image and username */
+        }
+
+        .profile-image {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: block;
+        }
+
+        .username {
+            font-size: 0.875rem; /* Adjust font size for better alignment */
+        }
+
+        /* Improved Card Container and Card Styling */
+        .card-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+            padding: 2rem;
+            justify-content: center;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .card {
+            background-color: #ffffff;
+            border: none;
+            border-radius: 1rem;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            width: 360px;
+            transition: transform 0.3s, box-shadow 0.3s, opacity 0.3s;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            position: relative;
+        }
+
+        .card.not-available {
+            opacity: 0.5;
+            pointer-events: none;
+        }
+
+        .card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
+        }
+
+        .card-img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            transition: opacity 0.3s;
+            border-top-left-radius: 1rem;
+            border-top-right-radius: 1rem;
+        }
+
+        .card-content {
+            padding: 1.5rem;
+            flex: 1;
+        }
+
+        .card-title {
+            font-size: 1.5rem;
+            margin: 0;
+            color: #333;
+            font-weight: 600;
+        }
+
+        .card-price {
+            color: #ff6f61;
+            font-weight: bold;
+            margin: 0.5rem 0;
+        }
+
+        .card-description {
+            font-size: 0.875rem;
+            color: #777;
+            margin: 0.5rem 0;
+        }
+
+        .card-availability {
+            font-size: 1rem;
+            color: #444;
+            margin: 0.5rem 0;
+        }
+
+        /* Quantity Container Styling */
+        .quantity-container {
+            display: flex;
+            align-items: center;
+            margin: 1rem 0;
+        }
+
+        .quantity-container input {
+            width: 50px;
+            text-align: center;
+            margin: 0 0.5rem;
+            border: 1px solid #ddd;
+            border-radius: 0.25rem;
+            padding: 0.25rem;
+        }
+
+        .quantity-container button {
+            background-color: #ff6f61;
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 0.25rem;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            font-size: 0.875rem;
+        }
+
+        .quantity-container button:hover {
+            background-color: #e64c3c;
+        }
+
+        /* Call to Action Button Styling */
+        .card-button {
+            background-color: #ff6f61;
+            color: white;
+            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.5rem;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.3s;
+            font-size: 1rem;
+            margin-top: 1rem;
+        }
+
+        .card-button:hover {
+            background-color: #e64c3c;
+            transform: scale(1.05);
+        }
+    </style>
+
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="logo">Foodie</div>
+            <ul class="nav-links">
+                <!-- Search Input -->
+                <li class="search-container">
+                    <input type="text" id="searchInput" placeholder="Search for food..." class="search-input">
+                </li>
+                
+                <li><a href="/food-home">Home</a></li>
+                
+                <% if (userRole === 'admin') { %>
+                    <li><a href="/addfood">Add Food</a></li>
+                    <li><a href="/orders">Manage Orders</a></li>
+                <% } %>
+                <li><a href="/orderstatus">Order updates</a></li>
+        
+                <!-- Notification Bell Icon with Unread Count -->
+                <% if (userRole) { %>
+                    <li class="notification-container">
+                        <a href="/notifications" class="notification-icon">
+                            <i class="fa fa-bell"></i> <!-- Font Awesome bell icon -->
+                            <% if (unreadNotificationsCount > 0) { %>
+                                <span class="notification-count"><%= unreadNotificationsCount %></span> <!-- Notification count badge -->
+                            <% } %>
+                        </a>
+                    </li>
+                <% } %>
+
+                
+        
+                <!-- Profile & Auth Links -->
+                <% if (userRole) { %>
+                    <li class="profile-container">
+                        <a href="/profile">
+                            <!-- Profile Image -->
+                            <img src="https://www.pngitem.com/pimgs/m/146-1468479_my-profile-icon-blank-profile-picture-circle-hd.png" alt="Profile Image" class="profile-image">
+                            <!-- Username -->
+                            <span class="username"><%= username %></span>
+                        </a>
+                    </li>
+                    <li><i class="fa-solid fa-cart-shopping"><a href="/cart">Cart</a></i></li>
+                    <li><a href="/logout">Logout</a></li>
+                <% } else { %>
+                    <li><a href="/signup">Signup</a></li>
+                    <li><a href="/login">Login</a></li>
+                <% } %>
+                
+               
+            </ul>
+        </nav>
+        
+    </header>
+
+    <main>
+        <section>
+           <!-- Filter Dropdown -->
+           <form id="filterForm" method="GET" action="/food-home" class="filter-form">
+            <label for="availabilityFilter">Filter by availability:</label>
+            <select id="availabilityFilter" name="availability" class="filter-select" onchange="this.form.submit();">
+                <option value="all" <% if (!filter.availability || filter.availability === 'all') { %>selected<% } %>>All Food</option>
+                <option value="Available" <% if (filter.availability === 'Available') { %>selected<% } %>>Available</option>
+                <option value="Not Available" <% if (filter.availability === 'Not Available') { %>selected<% } %>>Not Available</option>
+            </select>
+        
+            <label for="categoryFilter">Filter by category:</label>
+            <select id="categoryFilter" name="category" class="filter-select" onchange="this.form.submit();">
+                <option value="all" <% if (!filter.category || filter.category === 'all') { %>selected<% } %>>All Categories</option>
+                <option value="Beverages" <% if (filter.category === 'Beverages') { %>selected<% } %>>Beverages</option>
+                <option value="Main Course" <% if (filter.category === 'Main Course') { %>selected<% } %>>Main Course</option>
+                <option value="Snacks" <% if (filter.category === 'Snacks') { %>selected<% } %>>Snacks</option>
+                <option value="Desserts" <% if (filter.category === 'Desserts') { %>selected<% } %>>Desserts</option>
+            </select>
+        </form>
+        
+
+            
+        </section>
+
+
+        <section id="card-container" class="card-container">
+            <% foods.forEach(function(food) { %>
+                <form action="/cart/add" method="post" class="food-form <%= food.availability === 'Not Available' ? 'not-available' : '' %>">
+                    <input type="hidden" name="foodId" value="<%= food._id %>">
+                    <div class="card">
+                        <img src="<%= food.image %>" alt="<%= food.foodname %>" class="card-img">
+                        <div class="card-content">
+                            <h3 class="card-title"><%= food.foodname %></h3>
+                            <p class="card-price" data-price="<%= food.price %>"><%= food.price %></p>
+                            <p class="card-description"><%= food.description %></p>
+                            <p class="card-availability">Status: <%= food.availability %></p>
+                            <% if (food.availability === 'Available') { %>
+                                <div class="quantity-container">
+                                    <button type="button" class="quantity-decrease">-</button>
+                                    <input type="number" name="quantity" value="1" min="1" class="quantity-input">
+                                    <button type="button" class="quantity-increase">+</button>
+                                </div>
+                                <p class="total-price">Total: <span>₹<%= food.price %></span></p>
+                                <button type="submit" class="card-button">Add to Cart</button>
+                            <% } %>
+                        </div>
+                    </div>
+                </form>
+            <% }); %>
+        </section>
+        
+    </main>
+
+    <script>
+        document.querySelectorAll('.food-form').forEach(form => {
+            const priceElement = form.querySelector('.card-price');
+            const quantityInput = form.querySelector('.quantity-input');
+            const totalPriceElement = form.querySelector('.total-price span');
+
+            if (form.classList.contains('not-available')) {
+                return;
+            }
+
+            const updatePrice = () => {
+                const price = parseFloat(priceElement.getAttribute('data-price'));
+                const quantity = parseInt(quantityInput.value);
+                const total = (price * quantity).toFixed(2);
+                totalPriceElement.textContent = `₹${total}`;
+            };
+
+            form.querySelector('.quantity-increase').addEventListener('click', () => {
+                quantityInput.value = parseInt(quantityInput.value) + 1;
+                updatePrice();
+            });
+
+            form.querySelector('.quantity-decrease').addEventListener('click', () => {
+                if (parseInt(quantityInput.value) > 1) {
+                    quantityInput.value = parseInt(quantityInput.value) - 1;
+                    updatePrice();
+                }
+            });
+
+            quantityInput.addEventListener('input', updatePrice);
+        });
+    </script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const searchInput = document.getElementById('searchInput');
+            const foodCards = document.querySelectorAll('.card');
+        
+            searchInput.addEventListener('input', (event) => {
+                const query = event.target.value.toLowerCase();
+        
+                foodCards.forEach(card => {
+                    const title = card.querySelector('.card-title').textContent.toLowerCase();
+                    const description = card.querySelector('.card-description').textContent.toLowerCase();
+        
+                    if (title.includes(query) || description.includes(query)) {
+                        card.style.display = 'block';
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
+            });
+        });
+    </script>
+
+    <script>
+        document.querySelectorAll('.quantity-container').forEach(container => {
+            const decreaseButton = container.querySelector('.quantity-decrease');
+            const increaseButton = container.querySelector('.quantity-increase');
+            const quantityInput = container.querySelector('.quantity-input');
+            const priceElement = container.querySelector('.price'); // Element displaying the price
+            const unitPrice = parseFloat(priceElement.dataset.unitPrice); // Store the unit price as a data attribute
+        
+            const updatePrice = () => {
+                let quantity = parseInt(quantityInput.value);
+                let totalPrice = (unitPrice * quantity).toFixed(2);
+                priceElement.textContent = `₹${totalPrice}`;
+            };
+        
+            decreaseButton.addEventListener('click', () => {
+                let quantity = parseInt(quantityInput.value);
+                if (quantity > 1) {
+                    quantityInput.value = quantity - 1;
+                    updatePrice(); // Update price on quantity decrease
+                }
+            });
+        
+            increaseButton.addEventListener('click', () => {
+                let quantity = parseInt(quantityInput.value);
+                quantityInput.value = quantity + 1;
+                updatePrice(); // Update price on quantity increase
+            });
+        
+            // Optional: Update price if the quantity is changed manually via input
+            quantityInput.addEventListener('input', () => {
+                updatePrice();
+            });
+        });
+        </script>
+</body>
+</html>

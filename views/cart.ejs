@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Cart</title>
+    <style>
+        /* Basic Styling */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f9f9f9;
+            color: #333;
+            margin: 0;
+            padding: 0;
+        }
+
+        h1 {
+            text-align: center;
+            margin: 2rem 0;
+            color: #ff6f61;
+        }
+
+        /* Table Styling */
+        table {
+            width: 80%;
+            margin: 0 auto;
+            border-collapse: collapse;
+            background-color: #fff;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        th, td {
+            padding: 1rem;
+            text-align: center;
+        }
+
+        th {
+            background-color: #ff6f61;
+            color: white;
+        }
+
+        td {
+            border-bottom: 1px solid #ddd;
+        }
+
+        td img {
+            width: 80px;
+            border-radius: 8px;
+            transition: transform 0.3s ease;
+        }
+
+        td img:hover {
+            transform: scale(1.1);
+        }
+
+        /* Button Styling */
+        button {
+            padding: 0.5rem 1rem;
+            background-color: #ff6f61;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+        }
+
+        button:hover {
+            background-color: #ff4a3c;
+            transform: translateY(-2px);
+        }
+
+        input[type="number"] {
+            width: 50px;
+            padding: 0.5rem;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            text-align: center;
+        }
+
+        /* Empty Cart Message */
+        p {
+            text-align: center;
+            font-size: 1.2rem;
+            color: #888;
+        }
+
+        /* Animations for cart actions */
+        tr {
+            animation: fadeIn 0.5s ease;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Checkout Button */
+        form[action="/checkout"] button {
+            display: block;
+            width: 200px;
+            margin: 2rem auto;
+            padding: 1rem;
+            font-size: 1rem;
+        }
+
+        /* Navbar Styling */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #ffffff;
+            padding: 0.75rem 2rem;
+            color: #ff6f61;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .logo {
+            font-size: 1.75rem;
+            font-weight: bold;
+            color: #ff6f61;
+        }
+
+        .nav-links {
+            list-style: none;
+            display: flex;
+            gap: 1.5rem;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: #ff6f61;
+            text-decoration: none;
+            padding: 0.5rem 1rem;
+            border-radius: 0.25rem;
+            transition: background-color 0.3s, transform 0.3s, color 0.3s;
+        }
+
+        .nav-links a:hover {
+            background-color: #ff6f61;
+            color: white;
+            transform: scale(1.05);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            table {
+                width: 100%;
+                font-size: 0.9rem;
+            }
+
+            th, td {
+                padding: 0.75rem;
+            }
+
+            td img {
+                width: 60px;
+            }
+
+            input[type="number"] {
+                width: 40px;
+            }
+
+            button {
+                font-size: 0.9rem;
+            }
+
+            form[action="/checkout"] button {
+                width: 80%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="logo">Foodie</div>
+            <ul class="nav-links">
+                <li><a href="/food-home">Home</a></li>
+                <% if (userRole === 'admin') { %>
+                    <li><a href="/addfood">Add Food</a></li>
+                    <li><a href="/orders">Manage Orders</a></li>
+                <% } %>
+                <li><a href="/orderstatus">Order updates</a></li>
+                <% if (userRole) { %>
+                    <li><a href="/profile"><%= username %></a></li>
+                    <li><a href="/logout">Logout</a></li>
+                <% } else { %>
+                    <li><a href="/signup">Signup</a></li>
+                    <li><a href="/login">Login</a></li>
+                <% } %>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <h1>Your Cart</h1>
+
+        <% if (cart.items.length > 0) { %>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Image</th>
+                        <th>Name</th>
+                        <th>Price</th>
+                        <th>Quantity</th>
+                        <th>Total</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% cart.items.forEach(item => { %>
+                        <tr>
+                            <td><img src="<%= item.food.image %>" alt="<%= item.food.foodname %>" /></td>
+                            <td><%= item.food.foodname %></td>
+                            <td>₹<%= item.food.price %></td>
+                            <td>
+                                <form action="/cart/update" method="post" style="display:inline;">
+                                    <input type="hidden" name="itemId" value="<%= item._id %>">
+                                    <input type="number" name="quantity" value="<%= item.quantity %>" min="1">
+                                    <button type="submit">Update</button>
+                                </form>
+                            </td>
+                            <td>₹<%= item.quantity * item.food.price %></td>
+                            <td>
+                                <form action="/cart/remove" method="post" style="display:inline;">
+                                    <input type="hidden" name="itemId" value="<%= item._id %>">
+                                    <button type="submit">Remove</button>
+                                </form>
+                            </td>
+                        </tr>
+                    <% }); %>
+                </tbody>
+            </table>
+            <form action="/checkout" method="post">
+                <button type="submit">Checkout</button>
+            </form>
+        <% } else { %>
+            <p>Your cart is empty.</p>
+        <% } %>
+    </main>
+</body>
+</html>

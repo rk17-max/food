@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Food Menu</title>
+    <style>
+        /* Basic styling */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+        }
+
+        .notification {
+            background-color: #e53935;
+            color: white;
+            padding: 1rem 2rem;
+            border-radius: 0.5rem;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            text-align: center;
+            font-size: 1.2rem;
+            position: fixed;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            opacity: 0;
+            animation: fadeIn 1s forwards, pulse 1.5s infinite;
+            z-index: 1000;
+        }
+
+        .notification a {
+            color: #fff;
+            text-decoration: underline;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes pulse {
+            0% { transform: translateX(-50%) scale(1); }
+            50% { transform: translateX(-50%) scale(1.05); }
+            100% { transform: translateX(-50%) scale(1); }
+        }
+
+        .card-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            padding: 2rem;
+            justify-content: center;
+            max-width: 1200px;
+            margin-top: 100px; /* Add margin to push below the notification */
+        }
+
+        .card {
+            background-color: #fff;
+            border: 1px solid #ddd;
+            border-radius: 0.5rem;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            overflow: hidden;
+            width: 400px;
+            transition: transform 0.3s, box-shadow 0.3s;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            position: relative;
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+        }
+
+        .card-img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            transition: opacity 0.3s;
+        }
+
+        .card-content {
+            padding: 1rem;
+            flex: 1;
+        }
+
+        .card-title {
+            font-size: 1.25rem;
+            margin: 0;
+            color: #333;
+            font-weight: 600;
+        }
+
+        .card-price {
+            color: #e53935;
+            font-weight: bold;
+            margin: 0.5rem 0;
+        }
+
+        .card-description {
+            font-size: 0.875rem;
+            color: #666;
+            margin: 0.5rem 0;
+        }
+
+        .quantity-container {
+            display: flex;
+            align-items: center;
+            margin: 1rem 0;
+        }
+
+        .quantity-container input {
+            width: 50px;
+            text-align: center;
+            margin: 0 0.5rem;
+        }
+
+        .quantity-container button {
+            background-color: #e53935;
+            color: white;
+            border: none;
+            padding: 0.25rem 0.5rem;
+            border-radius: 0.25rem;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            font-size: 0.75rem;
+        }
+
+        .quantity-container button:hover {
+            background-color: #d32f2f;
+        }
+
+        .card-button {
+            background-color: #e53935;
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 0.25rem;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.3s;
+            font-size: 0.875rem;
+            margin-top: 1rem;
+        }
+
+        .card-button:hover {
+            background-color: #d32f2f;
+            transform: scale(1.05);
+        }
+    </style>
+</head>
+<body>
+    <% if (!user) { %>
+        <div class="notification">
+            You need to <a href="/login">login</a> to place an order.
+        </div>
+    <% } %>
+
+    <main>
+        <section id="card-container" class="card-container">
+            <% foods.forEach(function(food) { %>
+                <form action="/place-order" method="post" class="food-form">
+                    <input type="hidden" name="foodId" value="<%= food._id %>">
+                    <div class="card">
+                        <img src="<%= food.image %>" alt="<%= food.foodname %>" class="card-img">
+                        <div class="card-content">
+                            <h3 class="card-title"><%= food.foodname %></h3>
+                            <p class="card-price" data-price="<%= food.price %>"><%= food.price %></p>
+                            <p class="card-description"><%= food.description %></p>
+                            
+                            <p class="total-price">Total: <span>₽<%= food.price %></span></p>
+                            
+                        </div>
+                    </div>
+                </form>
+            <% }); %>
+        </section>
+    </main>
+</body>
+</html>
