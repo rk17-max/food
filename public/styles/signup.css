@@ -1,0 +1,74 @@
+body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    margin: 0;
+    overflow: hidden;
+    position: relative;
+    height: 100vh;
+}
+
+.background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    z-index: -1;
+    animation: changeBackground 15s infinite alternate;
+}
+
+@keyframes changeBackground {
+    0% { background-image: url('https://images.rawpixel.com/image_800/cHJpdmF0ZS9sci9pbWFnZXMvd2Vic2l0ZS8yMDIzLTA5L3Jhd3BpeGVsX29mZmljZV8yMl9waG90b19vZl9mdWxsX29mX2luZGlhbl9mb29kX3RvcF92aWV3X2ZsYXRfbF9mMmNkNWJlZC05OGJlLTQ2ZmUtOWJlOS1kMTdkMTY0ZmNiODhfMS5qcGc.jpg'); }
+    25% { background-image: url('https://img.freepik.com/free-photo/close-up-delicious-burger-meal_23-2151434076.jpg'); }
+    50% { background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS879U1eZnEaUYBWGcROCMz40qxH8DoOnz1aw&s'); }
+    75% { background-image: url('https://wallpaper.forfun.com/fetch/35/35422b1f328e943e7f5f20129ac2e188.jpeg'); }
+    100% { background-image: url('https://media.istockphoto.com/id/1024558722/photo/group-of-south-indian-food-like-masala-dosa-uttapam-idli-idly-wada-vada-sambar-appam-semolina.jpg?s=612x612&w=0&k=20&c=cbuPAUzlnqlnXhZAa2NbLoSHLUi6OEaVFayHKRAYO7E='); }
+}
+
+h2 {
+    color: #4CAF50;
+    margin-top: 20px;
+    font-size: 2rem;
+}
+
+form {
+    background-color: #fff;
+    padding: 2em;
+    padding-right: 50px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    display: inline-block;
+    max-width: 400px; /* Adjusted width for better layout */
+    width: 90%; /* Responsive width */
+    position: relative;
+    z-index: 1;
+}
+
+label, input {
+    display: block;
+    width: 100%;
+    margin-bottom: 15px; /* Increased margin for better spacing */
+}
+
+input {
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 1rem; /* Larger font size for better readability */
+}
+
+button {
+    padding: 12px 20px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1rem; /* Larger font size for better readability */
+}
+
+button:hover {
+    background-color: #45a049;
+}

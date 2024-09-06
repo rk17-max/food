@@ -1,0 +1,350 @@
+
+    /* Base Styles */
+    .filter-form {
+    margin: 1rem 0;
+    display: flex;
+    flex-direction: column; /* Stack form elements vertically on small screens */
+    gap: 1rem;
+}
+
+.notification-container {
+    position: relative;
+}
+
+.notification-icon {
+    font-size: 24px;
+    color: #fff;
+    position: relative;
+}
+
+.notification-count {
+    background-color: red;
+    color: white;
+    font-size: 12px;
+    border-radius: 50%;
+    padding: 2px 6px;
+    position: absolute;
+    top: -10px;
+    right: -10px;
+}
+
+.filter-form label {
+    font-size: 1rem;
+    color: #333;
+}
+
+.filter-select {
+    padding: 0.5rem 1rem;
+    font-size: 1rem;
+    border: 1px solid #ddd;
+    border-radius: 0.25rem;
+    background-color: #ffffff;
+    color: #333;
+    cursor: pointer;
+    transition: background-color 0.3s, border-color 0.3s;
+    max-width: 300px; /* Set a maximum width for larger screens */
+    width: 100%; /* Allow the width to adjust within the max-width */
+}
+
+.filter-select:hover {
+    background-color: #f9f9f9;
+    border-color: #ccc;
+}
+
+.filter-select option {
+    padding: 0.5rem;
+}
+@media (max-width: 768px) {
+    .filter-select {
+        max-width: 100%; /* Full width on smaller screens */
+    }
+}
+
+/* Enhanced Navbar Styling */
+.navbar {
+    display: flex;
+    flex-direction: row; /* Horizontal layout by default */
+    align-items: center;
+    padding: 1rem;
+    background-color: #ffffff;
+    color: #ff6f61;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+    justify-content: space-between; /* Space between logo and nav-links */
+}
+
+.logo {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #ff6f61;
+}
+
+.nav-links {
+    list-style: none;
+    display: flex;
+    flex-direction: row; /* Horizontal layout by default */
+    gap: 1rem;
+    margin: 0;
+}
+
+.nav-links li {
+    margin: 0;
+}
+
+.nav-links a {
+    color: #ff6f61;
+    text-decoration: none;
+    padding: 0.5rem;
+    border-radius: 0.25rem;
+    transition: background-color 0.3s, transform 0.3s, color 0.3s;
+    font-weight: 500;
+    display: block;
+}
+
+.nav-links a:hover {
+    background-color: #ff6f61;
+    color: #ffffff;
+    transform: scale(1.05);
+}
+
+/* Profile Container Styling */
+.profile-container {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.profile-image {
+    width: 35px;
+    height: 35px;
+}
+
+.username {
+    font-size: 0.75rem;
+}
+
+/* Improved Card Container and Card Styling */
+.card-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    padding: 1rem;
+    justify-content: center;
+    max-width: 100%;
+}
+
+.card {
+    background-color: #ffffff;
+    border: none;
+    border-radius: 1rem;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    width: 100%;
+    max-width: 360px;
+    transition: transform 0.3s, box-shadow 0.3s, opacity 0.3s;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    position: relative;
+}
+
+.card.not-available {
+    opacity: 0.5;
+    pointer-events: none;
+}
+
+.card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
+}
+
+.card-img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    transition: opacity 0.3s;
+    border-top-left-radius: 1rem;
+    border-top-right-radius: 1rem;
+}
+
+.card-content {
+    padding: 1rem;
+}
+
+.card-title {
+    font-size: 1.25rem;
+    margin: 0;
+    color: #333;
+    font-weight: 600;
+}
+
+.card-price {
+    color: #ff6f61;
+    font-weight: bold;
+    margin: 0.5rem 0;
+}
+
+.card-description {
+    font-size: 0.75rem;
+    color: #777;
+    margin: 0.5rem 0;
+}
+
+.card-availability {
+    font-size: 0.875rem;
+    color: #444;
+    margin: 0.5rem 0;
+}
+
+/* Quantity Container Styling */
+.quantity-container {
+    display: flex;
+    align-items: center;
+    margin: 1rem 0;
+}
+
+.quantity-container input {
+    width: 40px;
+    text-align: center;
+    margin: 0 0.5rem;
+    border: 1px solid #ddd;
+    border-radius: 0.25rem;
+    padding: 0.25rem;
+}
+
+.quantity-container button {
+    background-color: #ff6f61;
+    color: white;
+    border: none;
+    padding: 0.5rem;
+    border-radius: 0.25rem;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    font-size: 0.75rem;
+}
+
+.quantity-container button:hover {
+    background-color: #e64c3c;
+}
+
+/* Call to Action Button Styling */
+.card-button {
+    background-color: #ff6f61;
+    color: white;
+    border: none;
+    padding: 0.75rem;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.3s;
+    font-size: 0.875rem;
+    margin-top: 1rem;
+}
+
+.card-button:hover {
+    background-color: #e64c3c;
+    transform: scale(1.05);
+}
+
+/* Media Queries for Responsive Design */
+@media (max-width: 768px) {
+    .navbar {
+        flex-direction: column; /* Stack items vertically on small screens */
+        align-items: flex-start;
+    }
+
+    .nav-links {
+        flex-direction: column; /* Stack links vertically on small screens */
+        gap: 0.5rem;
+        margin-top: 1rem;
+    }
+
+    .profile-container {
+        flex-direction: column; /* Stack profile image and username vertically */
+        align-items: flex-start;
+    }
+
+    .profile-image {
+        width: 30px;
+        height: 30px;
+    }
+
+    .username {
+        font-size: 0.75rem;
+    }
+
+    .card-container {
+        gap: 1rem;
+        padding: 1rem;
+    }
+
+    .card {
+        width: 100%;
+        max-width: 100%;
+    }
+}
+
+@media (max-width: 480px) {
+    .filter-form {
+        flex-direction: column; /* Stack filter form elements vertically */
+        gap: 0.5rem;
+    }
+
+    .filter-select {
+        font-size: 0.875rem;
+    }
+
+    .card {
+        width: 100%;
+        max-width: 100%;
+    }
+
+    .card-img {
+        height: 150px; /* Adjust card image height for smaller screens */
+    }
+
+    .card-title {
+        font-size: 1.125rem; /* Smaller font size on smaller screens */
+    }
+
+    .card-price {
+        font-size: 0.875rem; /* Smaller font size on smaller screens */
+    }
+
+    .card-description {
+        font-size: 0.75rem; /* Smaller font size on smaller screens */
+    }
+
+    .card-availability {
+        font-size: 0.75rem; /* Smaller font size on smaller screens */
+    }
+}
+
+/* Small Devices (up to 600px) */
+@media (max-width: 600px) {
+    .filter-select {
+        max-width: 100%;
+        /* Additional styles for small devices */
+    }
+
+    .card {
+        width: 100%;
+        max-width: 100%;
+    }
+}
+
+/* Medium Devices (up to 720px) */
+@media (max-width: 720px) {
+    .filter-select {
+        max-width: 100%;
+        /* Additional styles for medium devices */
+    }
+
+    .card {
+        width: 100%;
+        max-width: 100%;
+    }
+}
+
+
+  

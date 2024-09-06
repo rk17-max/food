@@ -1,0 +1,103 @@
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .login-container {
+            background: #fff;
+            padding: 2em;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 300px;
+            text-align: center;
+            position: relative;
+            z-index: 1;
+            animation: slideIn 0.5s ease-out;
+        }
+
+        .login-container h2 {
+            margin-bottom: 1em;
+            color: #e53935;
+            animation: colorChange 1.5s infinite alternate;
+        }
+
+        .login-container input {
+            width: 100%;
+            padding: 0.8em;
+            margin: 0.5em 0;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            transition: border-color 0.3s;
+        }
+
+        .login-container input:focus {
+            border-color: #e53935;
+            outline: none;
+        }
+
+        .login-container button {
+            padding: 0.8em;
+            background-color: #e53935;
+            border: none;
+            color: #fff;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.2s;
+        }
+
+        .login-container button:hover {
+            background-color: #d32f2f;
+            transform: scale(1.05);
+        }
+
+        .login-container a {
+            color: #e53935;
+            text-decoration: none;
+        }
+
+        .login-container a:hover {
+            text-decoration: underline;
+        }
+
+        @keyframes slideIn {
+            from {
+                transform: translateY(-30px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        @keyframes colorChange {
+            from { color: #e53935; }
+            to { color: #ff8a80; }
+        }
+
+        /* Animated background */
+        .background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #ffeb3b, #ff9800);
+            z-index: 0;
+            animation: gradientShift 5s ease infinite;
+        }
+
+        @keyframes gradientShift {
+            0% { background: linear-gradient(135deg, #ffeb3b, #ff9800); }
+            50% { background: linear-gradient(135deg, #ff9800, #ff5722); }
+            100% { background: linear-gradient(135deg, #ff5722, #ffeb3b); }
+        }
+    
