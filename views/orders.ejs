@@ -4,120 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Manage Orders</title>
-    <link rel="stylesheet" href="/styles.css">
-    <style>
-        /* Basic styling for the orders page */
-        .navbar {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            background-color: #333;
-            padding: 1rem;
-            color: white;
-        }
-
-        .logo {
-            font-size: 1.5rem;
-            font-weight: bold;
-        }
-
-        .nav-links {
-            list-style: none;
-            display: flex;
-            gap: 1rem;
-        }
-
-        .nav-links li {
-            margin: 0;
-        }
-
-        .nav-links a {
-            color: white;
-            text-decoration: none;
-            padding: 0.5rem 1rem;
-            border-radius: 0.25rem;
-            transition: background-color 0.3s;
-        }
-
-        .nav-links a:hover {
-            background-color: #555;
-        }
-
-        .order-container {
-            padding: 1rem;
-        }
-
-        .order-card {
-            background-color: #fff;
-            border: 1px solid #ddd;
-            border-radius: 0.5rem;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-            margin-bottom: 1rem;
-            padding: 1rem;
-            position: relative;
-            animation: fadeIn 0.6s ease-in-out;
-        }
-
-        .order-card:hover {
-            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-            transform: scale(1.02);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-
-        .order-card img {
-            width: 100px;
-            height: auto;
-            object-fit: cover;
-            border-radius: 0.25rem;
-        }
-
-        .order-card h3 {
-            margin: 0;
-            color: #333;
-        }
-
-        .order-card p {
-            margin: 0.5rem 0;
-        }
-
-        .status-select {
-            border: none;
-            padding: 0.5rem;
-            border-radius: 0.25rem;
-            cursor: pointer;
-            background-color: #e53935;
-            color: white;
-            transition: background-color 0.3s;
-        }
-
-        .status-select:hover {
-            background-color: #d32f2f;
-        }
-
-        .order-quantity {
-            margin: 0.5rem 0;
-            font-weight: bold;
-            color: #333;
-        }
-
-        .order-total {
-            font-size: 1.2rem;
-            color: #e53935;
-            font-weight: bold;
-            margin: 0.5rem 0;
-        }
-
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-                transform: translateY(10px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-    </style>
+    <link rel="stylesheet" href="/styles/orders.css">
+    
 </head>
 <body>
     <header>
@@ -126,9 +14,9 @@
             <ul class="nav-links">
                 <li><a href="/food-home">Home</a></li>
                 <li><a href="/orders">Orders</a></li>
-                <li><a href="/menu">Today's menu</a></li>
-                <li><a href="/about">About</a></li>
+                <li><a href="/Todaymenu">Today's menu</a></li>
                 <li><a href="/logout">Logout</a></li>
+                
             </ul>
         </nav>
     </header>

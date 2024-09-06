@@ -24,7 +24,13 @@
                     <li><a href="/addfood">Add Food</a></li>
                     <li><a href="/orders">Manage Orders</a></li>
                 <% } %>
-                <li><a href="/orderstatus">Order updates</a></li>
+
+                <% if (userRole === 'user') { %>
+                    <li><a href="/orderstatus">Order updates</a></li>
+                    
+                   
+                <% } %>
+                
         
                 <!-- Notification Bell Icon with Unread Count -->
                 <% if (userRole) { %>
@@ -37,6 +43,7 @@
                         </a>
                     </li>
                 <% } %>
+
 
                 
         

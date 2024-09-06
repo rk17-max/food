@@ -18,6 +18,7 @@ const cookieParser = require('cookie-parser');
 
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
+app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.static('public'));
 app.use(cookieParser());
 app.use(session({
@@ -101,17 +102,13 @@ app.get('/food-home', authenticateToken, async (req, res) => {
 });
 
 
-app.get("/test", async (req, res) => {
+app.get('/menu', async (req, res) => {
     try {
-        let { filter } = req.query;
-        // If no filter is provided, default to an empty string to find all items
-        
-        const foods = await Food.find({ availability: filter });
-        console.log(foods);
-        res.json(foods); // Send the results as JSON for testing
+        // Fetch food items from your database (assuming you have a Food model)
+        const foods = await Food.find({});
+        res.render("home",{foods});  // Send the food items as JSON
     } catch (error) {
-        console.error('Error fetching foods:', error);
-        res.status(500).send('Internal Server Error');
+        res.status(500).json({ error: 'Failed to fetch food items' });
     }
 });
 
@@ -211,10 +208,15 @@ app.post('/login', async (req, res) => {
 
 
 
-app.get("/logout",(req,res)=>{
-    res.cookie("token","");
-    res.send("logout")
-})
+app.get("/logout", (req, res) => {
+    res.cookie("token", "", { 
+        httpOnly: true, 
+        secure: true, // Set this to true if you're using HTTPS
+        sameSite: 'None', // For cross-site cookies on mobile
+        expires: new Date(0) // Setting the expiration date to a past date
+    });
+    res.send("Logged out");
+});
 
 
 
@@ -460,7 +462,7 @@ const ensureAdmin = async (req, res, next) => {
 };
 
 
-app.get('/menu', ensureAdmin, async (req, res) => {
+app.get('/Todaymenu', ensureAdmin, async (req, res) => {
     try {
         // Fetch all available foods
         const foods = await Food.find({ });
