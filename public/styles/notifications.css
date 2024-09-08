@@ -1,0 +1,168 @@
+/* General styling */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+}
+
+.container {
+    max-width: 800px;
+    margin: 2rem auto;
+    padding: 1rem;
+    background: #fff;
+    border-radius: 0.5rem;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+/* Page title */
+.page-title {
+    text-align: center;
+    color: #333;
+    font-size: 2rem; /* Larger title */
+    margin-bottom: 1rem;
+}
+
+/* Notification list styling */
+.notification-list {
+    list-style: none;
+    padding: 0;
+}
+
+.notification-item {
+    background: #fff;
+    border: 1px solid #ddd;
+    border-radius: 0.5rem;
+    margin: 0.5rem 0;
+    padding: 1rem;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    position: relative; /* Position relative for delete button */
+    animation: fadeIn 0.5s ease-out;
+}
+
+.notification-item:hover {
+    background: #f0f0f0;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+/* Notification message and time */
+.notification-message {
+    margin: 0;
+    font-size: 1rem;
+    color: #333;
+}
+
+.notification-time {
+    margin: 0.5rem 0 0;
+    font-size: 0.875rem;
+    color: #666;
+}
+
+/* Delete button */
+.delete-btn {
+    background-color: #e53935;
+    color: white;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 0.25rem;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.3s;
+    font-size: 0.875rem;
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+}
+
+.delete-btn:hover {
+    background-color: #d32f2f;
+    transform: scale(1.05);
+}
+
+/* No notifications text */
+.no-notifications {
+    text-align: center;
+    color: #999;
+    font-size: 1rem;
+}
+
+/* Back link styling */
+.back-link {
+    display: block;
+    text-align: center;
+    margin-top: 1rem;
+    color: #e53935;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 1rem; /* Ensure readability */
+}
+
+.back-link:hover {
+    text-decoration: underline;
+}
+
+/* Keyframe for fade-in effect */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+    .container {
+        padding: 1rem;
+    }
+
+    .page-title {
+        font-size: 1.5rem; /* Adjusted for smaller screens */
+    }
+
+    .notification-item {
+        padding: 0.75rem;
+    }
+
+    .notification-message {
+        font-size: 0.9rem;
+    }
+
+    .notification-time {
+        font-size: 0.8rem;
+    }
+
+    .delete-btn {
+        padding: 0.4rem 0.8rem;
+        font-size: 0.75rem;
+        top: 0.5rem;
+        right: 0.5rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .page-title {
+        font-size: 1.25rem; /* Further adjustment for very small screens */
+    }
+
+    .notification-item {
+        padding: 0.5rem;
+    }
+
+    .notification-message {
+        font-size: 0.85rem;
+    }
+
+    .notification-time {
+        font-size: 0.75rem;
+    }
+
+    .delete-btn {
+        padding: 0.3rem 0.6rem;
+        font-size: 0.7rem;
+        top: 0.25rem;
+        right: 0.25rem;
+    }
+}

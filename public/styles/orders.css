@@ -65,6 +65,7 @@
     height: auto;
     object-fit: cover;
     border-radius: 0.25rem;
+    margin-bottom: 1rem; /* Added margin for spacing */
 }
 
 .order-card h3 {
@@ -115,5 +116,82 @@
     to {
         opacity: 1;
         transform: translateY(0);
+    }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .navbar {
+        flex-direction: column;
+        padding: 1rem;
+        text-align: center;
+    }
+
+    .nav-links {
+        flex-direction: column;
+        gap: 0.75rem;
+    }
+
+    .order-container {
+        padding: 1rem;
+    }
+
+    .order-card {
+        padding: 0.75rem;
+    }
+
+    .order-card h3 {
+        font-size: 1.1rem;
+    }
+
+    .order-total {
+        font-size: 1rem;
+    }
+
+    .status-select {
+        padding: 0.5rem;
+    }
+
+    .order-card img {
+        width: 80px;
+    }
+}
+
+@media (max-width: 480px) {
+    .navbar {
+        padding: 0.5rem;
+    }
+
+    .logo {
+        font-size: 1.25rem;
+    }
+
+    .nav-links {
+        gap: 0.5rem;
+    }
+
+    .order-container {
+        padding: 0.5rem;
+    }
+
+    .order-card {
+        padding: 0.5rem;
+    }
+
+    .order-card h3 {
+        font-size: 1rem;
+    }
+
+    .order-card img {
+        width: 60px;
+    }
+
+    .order-total {
+        font-size: 0.9rem;
+    }
+
+    .status-select {
+        padding: 0.4rem;
+        font-size: 0.9rem;
     }
 }

@@ -215,7 +215,7 @@ app.get("/logout", (req, res) => {
         sameSite: 'None', // For cross-site cookies on mobile
         expires: new Date(0) // Setting the expiration date to a past date
     });
-    res.send("Logged out");
+    res.redirect("/menu");
 });
 
 
@@ -513,6 +513,16 @@ app.get('/notifications', authenticateToken, async (req, res) => {
     } catch (error) {
         console.error('Error fetching notifications:', error);
         res.status(500).send('Internal Server Error');
+    }
+});
+
+app.post('/notifications/delete/:id', async (req, res) => {
+    try {
+        await Notification.findByIdAndDelete(req.params.id);
+        res.redirect('/notifications'); // Redirect back to the notifications page
+    } catch (error) {
+        console.error('Error deleting notification:', error);
+        res.redirect('/notifications'); // Redirect back with error handling if necessary
     }
 });
 

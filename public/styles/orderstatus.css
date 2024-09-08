@@ -1,0 +1,177 @@
+/* Basic styling for the order status page */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #333;
+    padding: 1rem;
+    color: white;
+}
+
+.logo {
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+.nav-links {
+    list-style: none;
+    display: flex;
+    gap: 1rem;
+}
+
+.nav-links li {
+    margin: 0;
+}
+
+.nav-links a {
+    color: white;
+    text-decoration: none;
+    padding: 0.5rem 1rem;
+    border-radius: 0.25rem;
+    transition: background-color 0.3s;
+}
+
+.nav-links a:hover {
+    background-color: #555;
+}
+
+main {
+    padding: 2rem;
+}
+
+h1 {
+    margin-bottom: 1rem;
+    color: #333;
+}
+
+.order-list {
+    background: #fff;
+    border-radius: 0.5rem;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    padding: 1rem;
+}
+
+.order-item {
+    border-bottom: 1px solid #ddd;
+    padding: 1rem 0;
+}
+
+.order-item:last-child {
+    border-bottom: none;
+}
+
+.order-item h3 {
+    margin: 0;
+    color: #333;
+}
+
+.order-item p {
+    margin: 0.5rem 0;
+    color: #666;
+}
+
+.order-quantity {
+    font-weight: bold;
+    color: #333;
+}
+
+.order-total {
+    font-size: 1.2rem;
+    color: #e53935;
+    font-weight: bold;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    /* Navbar adjustments for mobile */
+    .navbar {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .nav-links {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+
+    main {
+        padding: 1rem;
+    }
+
+    h1 {
+        font-size: 1.5rem;
+    }
+
+    .order-list {
+        padding: 0.5rem;
+    }
+
+    .order-item {
+        padding: 0.5rem 0;
+    }
+
+    .order-total {
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    /* Further adjustments for small screens */
+    .navbar {
+        padding: 0.5rem;
+    }
+
+    .logo {
+        font-size: 1.25rem;
+    }
+
+    .nav-links {
+        gap: 0.25rem;
+    }
+
+    h1 {
+        font-size: 1.2rem;
+    }
+
+    .order-list {
+        padding: 0.5rem;
+    }
+
+    .order-item {
+        padding: 0.5rem 0;
+    }
+
+    .order-total {
+        font-size: 0.9rem;
+    }
+
+    .order-quantity {
+        font-size: 0.9rem;
+    }
+}
+
+.order-item {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 0.5rem;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    margin-bottom: 1.5rem; /* Increased margin for better separation */
+    padding: 1rem;
+    position: relative;
+    animation: fadeIn 0.6s ease-in-out;
+}
+
+.order-item-img {
+    width: 100px; /* Adjust width as needed */
+    height: auto;
+    object-fit: cover;
+    border-radius: 0.25rem;
+    margin-bottom: 1rem; /* Added margin for spacing */
+}

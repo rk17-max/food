@@ -25,18 +25,25 @@
         <section class="order-container">
             <% orders.forEach(function(order) { %>
                 <div class="order-card">
-                    <div class="order-user">Order placed by: <%= order.user.username %> (<%= order.user.email %>)</div>
-                    <div class="order-status">Status: <%= order.status %></div>
+                    <div class="order-user">
+                        Order placed by: <%= order.user.username %> (<%= order.user.email %>)
+                    </div>
+                    <div class="order-status">
+                        Status: <%= order.status %>
+                    </div>
                     
                     <div class="order-food">
                         <h3>Food Details</h3>
+                        <img src="<%= order.food.image %>" alt="<%= order.food.foodname %>" class="food-image">
                         <p><strong>Name:</strong> <%= order.food.foodname %></p>
                         <p><strong>Price:</strong> $<%= order.food.price %></p>
                         <p><strong>Description:</strong> <%= order.food.description %></p>
                         <p><strong>Category:</strong> <%= order.food.category %></p>
                         <p class="order-quantity"><strong>Quantity:</strong> <%= order.qty %></p>
-                        <p class="order-total"><strong>Total Price:</strong> $<%= (order.food.price * order.qty).toFixed(2) %></p>
+                        <p class="order-total"><strong>Total Price:</strong> ₹<%= (order.food.price * order.qty).toFixed(2) %></p>
                     </div>
+                </div>
+                
 
                     <form action="/update-order/<%= order._id %>" method="post">
                         <select name="status" class="status-select">

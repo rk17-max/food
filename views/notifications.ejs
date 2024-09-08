@@ -1,23 +1,32 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Notifications</title>
-    <link rel="stylesheet" href="/path/to/your/css/style.css"> <!-- Adjust the path -->
+    <link rel="stylesheet" href="/styles/notifications.css"> <!-- Adjust the path -->
 </head>
 <body>
-    <h1>Notifications</h1>
-    <% if (notifications.length > 0) { %>
-        <ul>
-            <% notifications.forEach(notification => { %>
-                <li>
-                    <p><%= notification.message %></p>
-                    <p><small><%= new Date(notification.createdAt).toLocaleString() %></small></p>
-                </li>
-            <% }) %>
-        </ul>
-    <% } else { %>
-        <p>No notifications.</p>
-    <% } %>
-    <a href="/food-home">Back to Food Home</a>
+    <div class="container">
+        <h1 class="page-title">Notifications</h1>
+        <% if (notifications.length > 0) { %>
+            <ul class="notification-list">
+                <% notifications.forEach(notification => { %>
+                    <li class="notification-item">
+                        <p class="notification-message"><%= notification.message %></p>
+                        <p class="notification-time"><small><%= new Date(notification.createdAt).toLocaleString() %></small></p>
+                        
+                        <!-- Form for deleting the notification -->
+                        <form action="/notifications/delete/<%= notification._id %>" method="POST" style="display: inline;">
+                            <button type="submit" class="delete-btn">Delete</button>
+                        </form>
+                    </li>
+                <% }) %>
+            </ul>
+        <% } else { %>
+            <p class="no-notifications">No notifications.</p>
+        <% } %>
+        <a href="/food-home" class="back-link">Back to Food Home</a>
+    </div>
 </body>
 </html>
