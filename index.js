@@ -7,6 +7,8 @@ const Order=require("./models/order")
 const Cart = require('./models/Cart');
 const Notification=require("./models/Notifications")
 const bcrypt = require('bcrypt');
+require('dotenv').config();
+
 const session = require('express-session');
 const path=require("path")
 const jwt = require('jsonwebtoken');
@@ -38,7 +40,7 @@ const authenticateToken = (req, res, next) => {
 
     if (!token) return res.redirect('/login'); // Redirect if no token
 
-    jwt.verify(token, 'secret', (err, user) => {
+    jwt.verify(token,  process.env.JWT_SECRET, (err, user) => {
         if (err) {
             console.error('Token verification error:', err);
             return res.redirect('/login');
@@ -134,11 +136,16 @@ app.post("/signup", async (req, res) => {
             orders: [] // Initialize with an empty array for orders
         });
 
-        let token = jwt.sign({ email: user.email, userid: user._id, category: user.category }, "secret", { expiresIn: '1h' });
+        let token = jwt.sign(
+            { email: user.email, userid: user._id, category: user.category },
+            process.env.JWT_SECRET,
+            { expiresIn: '1h' }
+          );
+          
 
         res.cookie("token", token)
 
-        res.status(200).json({ message: "User registered successfully" });
+        res.redirect("/food-home")
 
     } catch (error) {
         console.error("Error during signup:", error);
@@ -181,8 +188,12 @@ app.post('/login', async (req, res) => {
             // If the password matches
             if (result) {
                 // Create a JWT token with the category included
-                let token = jwt.sign({ email: user.email, userid: user._id, category: user.category }, "secret", { expiresIn: '1h' });
-
+                let token = jwt.sign(
+                    { email: user.email, userid: user._id, category: user.category },
+                    process.env.JWT_SECRET,
+                    { expiresIn: '1h' }
+                  );
+                  
                 // Set the token in a cookie
                 res.cookie("token", token, {
                     httpOnly: true,
